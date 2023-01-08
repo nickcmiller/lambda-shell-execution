@@ -33,30 +33,7 @@ module "lambda" {
   filename               = "${path.module}/handler/${local.lambda_name}.zip"
 }
 
-
-#AMI for Test Instance
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-2.0*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["amazon"]
+#Module containing test instance for shell script
+module "ec2" {
+  source      = "./ec2"
 }
-
-#Test instance
-resource "aws_instance" "test" {
-  ami           = data.aws_ami.amazon_linux.id
-  instance_type = "t2.micro"
-  tags = {
-    Name = "Test"
-  }
-}
-

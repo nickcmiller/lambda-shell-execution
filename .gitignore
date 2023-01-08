@@ -1,3 +1,6 @@
+#All key pairs
+*.pem
+
 # Local .terraform directories
 **/.terraform/*
 
