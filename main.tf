@@ -33,7 +33,9 @@ module "lambda" {
   filename               = "${path.module}/handler/${local.lambda_name}.zip"
 }
 
-#Module containing test instance for shell script
+#Module containing test instance for shell script to run on
 module "ec2" {
   source      = "./ec2"
+  #IAM instance profile with SSM permissions for test instance
+  iam_instance_profile = module.iam.ec2_ssm_profile
 }
