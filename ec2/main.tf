@@ -20,7 +20,7 @@ resource "aws_key_pair" "test_key_pair" {
 
 #Creating a Security Group with SSH access
 resource "aws_security_group" "ssh_http_access" {
-  name        = "ssh_access"
+  name        = "ssh_http_access"
   description = "Allow SSH and HTTP access"
   
   egress {
